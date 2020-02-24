@@ -6,10 +6,8 @@ use App\Services\Markdowner;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
 
-class Post extends Model implements Feedable
+class Post extends Model
 {
     use SoftDeletes;
 
@@ -257,33 +255,6 @@ class Post extends Model implements Feedable
         }
 
         return $query->first();
-    }
-
-    /**
-     * Model RSS feed items to return.
-     *
-     * @return FeedItem
-     */
-    public function toFeedItem()
-    {
-        return FeedItem::create([
-            'id'        => $this->id,
-            'title'     => $this->title,
-            'summary'   => $this->content_html,
-            'updated'   => $this->updated_at,
-            'link'      => $this->slug,
-            'author'    => $this->author,
-        ]);
-    }
-
-    /**
-     * Get the feed items.
-     *
-     * @return collection
-     */
-    public static function getFeedItems()
-    {
-        return self::allPublishedPosts()->get();
     }
 
     /**

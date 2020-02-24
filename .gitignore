@@ -17,3 +17,4 @@ composer.lock
 .env
 .phpunit.result.cache
 sitemap.xml
+/nbproject/private/

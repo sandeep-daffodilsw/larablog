@@ -24,9 +24,6 @@ Route::group(['middleware' => ['activity']], function () {
     Route::get('/contact', 'ContactController@index')->name('contact');
     Route::post('/contact', 'ContactController@contactSend')->name('contactSend');
 
-    // RSS Feed Route
-    Route::feeds();
-
     // Register, Login, and forget PW Routes
     Auth::routes();
 });
